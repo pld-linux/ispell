@@ -52,6 +52,9 @@
 +
 +/*
 + * $Log$
++ * Revision 1.1  1999/07/20 10:57:19  baggins
++ * - missing patches/sources
++ *
 + * Revision 1.14  1995/01/08  23:23:56  geoff
 + * Do some minor clarification of the instructional comments.
 + *
@@ -99,7 +102,7 @@
 +#define MAN1DIR	"/usr/share/man/man1"
 +#define MAN4DIR	"/usr/share/man/man4"
 +
-+#define LANGUAGES "{american,MASTERDICTS=american.med+,HASHFILES=americanmed+.hash,EXTRADICT=/usr/dict/words}"
++#define LANGUAGES "{american,MASTERDICTS=american.med+,HASHFILES=americanmed+.hash,EXTRADICT=/usr/share/dict/words}"
 +
 +/*
 + * Place any locally-required #include statements here
