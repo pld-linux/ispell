@@ -5,7 +5,7 @@ Summary(pl):	GNU ispell - interaktywny program do sprawdzania pisowni
 Summary(tr):	Etkilmli yazým denetleyici
 Name:		ispell
 Version:	3.1.20
-Release:	12
+Release:	13
 Copyright:	GPL
 Group:		Utilities/Text
 Group(pl):	Narzêdzia/Tekst
@@ -20,6 +20,7 @@ Patch4:		%{name}-mask.axp.patch
 Patch5:		%{name}-gets.patch
 Patch6:		%{name}-german.patch
 Patch7:		%{name}-ncurses.patch
+Patch8:		%{name}-munchlist.patch
 PreReq:		/sbin/install-info
 BuildRoot:	/tmp/%{name}-%{version}-root
 
