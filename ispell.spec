@@ -2,10 +2,12 @@ Summary:	GNU ispell - interactive spelling checker
 Summary(de):	GNU ispell - interaktive RechtschreibprЭfung
 Summary(fr):	ispell de GNU - vИrificateur orthographique interactif
 Summary(pl):	GNU ispell - interaktywny program do sprawdzania pisowni
+Summary(ru):	GNU ispell - интерактивная программа проверки орфографии
 Summary(tr):	Etkilmli yazЩm denetleyici
+Summary(uk):	GNU ispell - ╕нтерактивна програма перев╕рки орфограф╕╖
 Name:		ispell
 Version:	3.1.20
-Release:	16
+Release:	34
 License:	BSD
 Group:		Applications/Text
 Group(cs):	Aplikace/Text
@@ -37,9 +39,11 @@ Patch8:		%{name}-munchlist.patch
 Patch9:		%{name}-no-EXTRADICT.patch
 Patch10:	%{name}-glibc.patch
 Patch11:	%{name}-config2.patch
+Patch12:	%{name}-noprotosplease2.patch
+Patch13:	%{name}-texlongspace.patch
+Patch14:	%{name}-isohtml.patch
 BuildRequires:	bison
 BuildRequires:	texinfo
-Prereq:		/sbin/install-info
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -66,24 +70,44 @@ u©ywaФ go do sprawdzania pisowni plikСw tekstowych. DziaЁa on w ten
 sposСb, ©e informuje o napotkanych, nieznanych sЁowach i sugeruje ich
 zamienniki znajduj╠ce siЙ w sЁowniku.
 
+%description -l uk
+Ispell - це ╕нтерактивна програма перев╕рки орфограф╕╖ GNU. Ispell
+перев╕ря╓ текстовий файл в пошуку орфограф╕чних помилок. Коли вона
+знаходить слово, якого нема╓ в словнику, вона пропону╓ близьк╕ до
+нього коректн╕ слова для зам╕ни.
+
+Зверн╕ть увагу, що цей пакет м╕стить лише програму перев╕рки. Вам буде
+потр╕бно встановити ще пакети з файлами словник╕в для тих мов,
+правильн╕сть текст╕в на яких ви хочете перев╕ряти.
+
 %description -l tr
 ispell, metin dosyalarЩ Эzerinde sЖzcЭk yazЩmЩ denetimleri yapan ve
 hatalЩ olduПunu dЭЧЭndЭПЭ sЖzcЭkleri kullanЩcЩya bildirerek
 etkileЧimli olarak dЭzeltilmesine ГalЩЧan bir yazЩlЩmdЩr. DЭzeltme
 Жnerilerinde bulunma yeteneПi de vardЩr.
 
+%description -l ru
+Ispell - это интерактивная программа проверки орфографии GNU. Ispell
+проверяет текстовый файл в поиске орфографических ошибок и опечаток.
+Когда она находит слово, которого нет в словаре, она предлагает
+близкие к нему корректные слова для замены.
+
+Обратите внимание, что этот пакет содержит только программу проверки,
+к ней необходимо установить пакеты с файлами словарей для тех языков,
+правильность текстов на которых вы хотите проверять.
+
 %prep
-%setup -q -n ispell-3.1
+%setup -q -n %{name}-3.1
 
 %patch0 -p1
-%patch1 -p1 
-%patch2 -p1 
-%patch3 -p1 
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %ifarch alpha
-%patch4 -p1 
+%patch4 -p1
 %endif
- 
+
 %patch5 -p0
 %patch6 -p0
 %patch7 -p1
@@ -91,6 +115,9 @@ etkileЧimli olarak dЭzeltilmesine ГalЩЧan bir yazЩlЩmdЩr. DЭzeltme
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
+%patch12 -p1
+%patch13 -p1
+%patch14 -p1
 
 %build
 sed "s/CFLAGS \"-O\"/CFLAGS \"%{rpmcflags}\"/" <local.h >local.h.tmp
@@ -118,7 +145,7 @@ install ispell.info $RPM_BUILD_ROOT%{_infodir}/ispell.info
 install %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}
 
 gzip -9nf README
-    
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
