@@ -66,7 +66,9 @@ de vardýr.
  
 %patch5 -p0
 %patch6 -p0
+%patch6 -p0
 %patch7 -p1
+%patch8 -p1
 
 echo "Getting prebuilt ispell.info file :-(."
 cp $RPM_SOURCE_DIR/ispell.info .
