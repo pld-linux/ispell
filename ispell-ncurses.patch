@@ -1,0 +1,12 @@
+diff -ur ispell-3.1.orig/config.X ispell-3.1/config.X
+--- ispell-3.1.orig/config.X	Sun Jul 18 00:36:37 1999
++++ ispell-3.1/config.X	Sun Jul 18 00:37:02 1999
+@@ -150,7 +150,7 @@
+ ** -lcurses on most systems.
+ */
+ #ifndef TERMLIB
+-#define TERMLIB	"-ltermcap"
++#define TERMLIB	"-lncurses"
+ #endif
+ 
+ /*
