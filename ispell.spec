@@ -1,7 +1,7 @@
 Summary:	GNU ispell - interactive spelling checker
 Summary(de):	GNU ispell - interaktive Rechtschreibprüfung
 Summary(fr):	ispell de GNU - vérificateur orthographique interactif
-Summary(pl):	GNU ispell -interaktywny program do sprawdzania pisowni
+Summary(pl):	GNU ispell - interaktywny program do sprawdzania pisowni
 Summary(tr):	Etkilmli yazým denetleyici
 Name:		ispell
 Version:	3.1.20
@@ -22,28 +22,26 @@ PreReq:		/sbin/install-info
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
-This is the GNU interactive spelling checker.  You can run 
-it on text files and it will interactively spell check.  This
-means it will tell you about words it doesn't know, and will
-suggest alternatives when it can.
-
-%description -l pl
-Program ten to interaktywny pakiet do sprawdzania pisowni. Mo¿na
-u¿ywaæ go do sprawdzania pisowni plików tekstowych. Dzia³a on w ten
-sposób, ¿e informuje o napotkanych, nieznanych s³owach i sugeruje
-ich zamienniki znajduj±ce siê w s³owniku.
+This is the GNU interactive spelling checker. You can run it on text files
+and it will interactively spell check. This means it will tell you about
+words it doesn't know, and will suggest alternatives when it can.
 
 %description -l de
-Dies ist die interaktive GNU-Rechtschreibprüfung. Sie kann
-auf Textdateien angewendet werden und prüft interaktiv auf
-orthographische Fehler. Das heißt, das Programm meldet, 
-Möglichkeit eine Alternative vor.
+Dies ist die interaktive GNU-Rechtschreibprüfung. Sie kann auf Textdateien
+angewendet werden und prüft interaktiv auf orthographische Fehler. Das
+heißt, das Programm meldet, Möglichkeit eine Alternative vor.
 
 %description -l fr
-Le correcteur orthographique interactif de GNU. Vous pouvez le
-lancer sur des fichiers texte et il les vérifiera de manière interactive.
-Cela sisgnifie qu'il vous indiquera les mots qu'il ne reconnait pas et
-vous proposera des solutions de remplacement s'il le peut.
+Le correcteur orthographique interactif de GNU. Vous pouvez le lancer sur
+des fichiers texte et il les vérifiera de manière interactive. Cela
+sisgnifie qu'il vous indiquera les mots qu'il ne reconnait pas et vous
+proposera des solutions de remplacement s'il le peut.
+
+%description -l pl
+Program ten to interaktywny pakiet do sprawdzania pisowni. Mo¿na u¿ywaæ go
+do sprawdzania pisowni plików tekstowych. Dzia³a on w ten sposób, ¿e
+informuje o napotkanych, nieznanych s³owach i sugeruje ich zamienniki
+znajduj±ce siê w s³owniku.
 
 %description -l tr
 ispell, metin dosyalarý üzerinde sözcük yazýmý denetimleri yapan ve hatalý
