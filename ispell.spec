@@ -15,7 +15,7 @@ Patch3:      %{name}-mask.patch
 Patch4:      %{name}-mask.axp.patch
 Patch5:      %{name}-gets.patch
 PreReq:      /sbin/install-info
-BuildRoot:   /var/tmp/%{name}-%{version}-%{release}-root
+BuildRoot:	/tmp/%{name}-%{version}-root
 Summary(de): GNU ispell - interaktive Rechtschreibprüfung
 Summary(fr): ispell de GNU - vérificateur orthographique interactif
 Summary(pl): GNU ispell -interaktywny program do sprawdzania pisowni
