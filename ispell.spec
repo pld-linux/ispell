@@ -22,7 +22,7 @@ Patch6:		%{name}-german.patch
 Patch7:		%{name}-ncurses.patch
 Patch8:		%{name}-munchlist.patch
 PreReq:		/sbin/install-info
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 This is the GNU interactive spelling checker. You can run it on text files
