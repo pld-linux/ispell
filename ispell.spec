@@ -107,8 +107,8 @@ bzip2 -9 $RPM_BUILD_ROOT%{_mandir}/man[14]/*
 
 %attr(755,root,root) /usr/bin/*
 
-%attr(644,root,man) %{_mandir}/man1/*
-%attr(644,root,man) %{_mandir}/man4/*
+%{_mandir}/man1/*
+%{_mandir}/man4/*
 
 /usr/lib/ispell
 
