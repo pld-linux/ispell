@@ -5,12 +5,24 @@ Summary(pl):	GNU ispell - interaktywny program do sprawdzania pisowni
 Summary(tr):	Etkilmli yazЩm denetleyici
 Name:		ispell
 Version:	3.1.20
-Release:	15
-License:	GPL
+Release:	16
+License:	BSD
 Group:		Applications/Text
+Group(cs):	Aplikace/Text
+Group(da):	Programmer/Tekst
 Group(de):	Applikationen/Text
-Group(fr):	Utilitaires/Texte
+Group(es):	Aplicaciones/Texto
+Group(fr):	Applications/Texte
+Group(is):	Forrit/Texti
+Group(it):	Applicazioni/Testo
+Group(ja):	╔╒╔в╔Й╔╠║╪╔╥╔Г╔С/╔ф╔╜╔╧╔х
+Group(no):	Applikasjoner/Tekst
 Group(pl):	Aplikacje/Tekst
+Group(pt):	AplicaГУes/Texto
+Group(ru):	Приложения/Текстовые утилиты
+Group(sl):	Programi/Besedilo
+Group(sv):	TillДmpningar/Text
+Group(uk):	Прикладн╕ Програми/Текстов╕ утил╕ти
 Source0:	ftp://prep.ai.mit.edu/pub/gnu/%{name}-%{version}.tar.gz
 Source1:	spell
 Patch0:		%{name}-config.patch
@@ -89,7 +101,7 @@ PATH=.:$PATH %{__make} config.sh
 
 # Now save build-rooted version (with time-stamp) for install ...
 cp -f config.sh config.sh.BUILD
-sed -e "s,/usr/,$RPM_BUILD_ROOT/usr/,g" < config.sh.BUILD > config.sh.INSTALL
+sed -e "s,/usr/,$RPM_BUILD_ROOT%{_prefix}/,g" < config.sh.BUILD > config.sh.INSTALL
 
 # and then make everything
 PATH=.:$PATH TEMLIB="-lncurses" %{__make}
