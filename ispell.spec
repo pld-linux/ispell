@@ -7,7 +7,7 @@ Summary(tr):	Etkilmli yazЩm denetleyici
 Summary(uk):	GNU ispell - ╕нтерактивна програма перев╕рки орфограф╕╖
 Name:		ispell
 Version:	3.1.20
-Release:	34
+Release:	35
 License:	BSD
 Group:		Applications/Text
 Group(cs):	Aplikace/Text
@@ -39,9 +39,8 @@ Patch8:		%{name}-munchlist.patch
 Patch9:		%{name}-no-EXTRADICT.patch
 Patch10:	%{name}-glibc.patch
 Patch11:	%{name}-config2.patch
-Patch12:	%{name}-noprotosplease2.patch
-Patch13:	%{name}-texlongspace.patch
-Patch14:	%{name}-isohtml.patch
+Patch12:	%{name}-texlongspace.patch
+Patch13:	%{name}-isohtml.patch
 BuildRequires:	bison
 BuildRequires:	texinfo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -117,7 +116,6 @@ Ispell - это интерактивная программа проверки орфографии GNU. Ispell
 %patch11 -p1
 %patch12 -p1
 %patch13 -p1
-%patch14 -p1
 
 %build
 sed "s/CFLAGS \"-O\"/CFLAGS \"%{rpmcflags}\"/" <local.h >local.h.tmp
