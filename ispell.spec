@@ -7,7 +7,7 @@ Summary(tr):	Etkilmli yazЩm denetleyici
 Summary(uk):	ispell - ╕нтерактивна програма перев╕рки орфограф╕╖
 Name:		ispell
 Version:	3.2.06
-Release:	1
+Release:	2
 License:	BSD-like
 Group:		Applications/Text
 Source0:	http://fmg-www.cs.ucla.edu/geoff/tars/%{name}-%{version}.tar.gz
