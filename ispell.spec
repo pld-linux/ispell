@@ -10,21 +10,6 @@ Version:	3.1.20
 Release:	35
 License:	BSD
 Group:		Applications/Text
-Group(cs):	Aplikace/Text
-Group(da):	Programmer/Tekst
-Group(de):	Applikationen/Text
-Group(es):	Aplicaciones/Texto
-Group(fr):	Applications/Texte
-Group(is):	Forrit/Texti
-Group(it):	Applicazioni/Testo
-Group(ja):	╔╒╔в╔Й╔╠║╪╔╥╔Г╔С/╔ф╔╜╔╧╔х
-Group(no):	Applikasjoner/Tekst
-Group(pl):	Aplikacje/Tekst
-Group(pt):	AplicaГУes/Texto
-Group(ru):	Приложения/Текстовые утилиты
-Group(sl):	Programi/Besedilo
-Group(sv):	TillДmpningar/Text
-Group(uk):	Прикладн╕ Програми/Текстов╕ утил╕ти
 Source0:	ftp://prep.ai.mit.edu/pub/gnu/%{name}-%{version}.tar.gz
 Source1:	spell
 Patch0:		%{name}-config.patch
