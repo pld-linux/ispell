@@ -7,7 +7,7 @@ Summary(tr):	Etkilmli yazЩm denetleyici
 Summary(uk):	GNU ispell - ╕нтерактивна програма перев╕рки орфограф╕╖
 Name:		ispell
 Version:	3.1.20
-Release:	35
+Release:	36
 License:	BSD
 Group:		Applications/Text
 Source0:	ftp://prep.ai.mit.edu/pub/gnu/%{name}-%{version}.tar.gz
@@ -80,6 +80,18 @@ Ispell - это интерактивная программа проверки орфографии GNU. Ispell
 к ней необходимо установить пакеты с файлами словарей для тех языков,
 правильность текстов на которых вы хотите проверять.
 
+%package en
+Summary:	English dictionary for ispell
+Summary(pl):	Angielski sЁownik dla ispella
+Group:		Applications/Text
+Requires:	%{name} = %{version}
+
+%description en
+English dictionary (i.e. word list) for ispell.
+
+%description en -l pl
+Angielski sЁownik (lista sЁСw) dla ispella.
+
 %prep
 %setup -q -n %{name}-3.1
 
@@ -127,8 +139,6 @@ PATH=.:$PATH %{__make} install
 install ispell.info $RPM_BUILD_ROOT%{_infodir}/ispell.info
 install %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}
 
-gzip -9nf README
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -140,10 +150,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.gz
-
+%doc README
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
 %{_mandir}/man4/*
-%{_libdir}/ispell
+%dir %{_libdir}/ispell
 %{_infodir}/ispell.info*
+
+%files en
+%defattr(644,root,root,755)
+%{_libdir}/ispell/*
