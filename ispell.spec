@@ -5,7 +5,7 @@ Summary(pl):	GNU ispell - interaktywny program do sprawdzania pisowni
 Summary(tr):	Etkilmli yazým denetleyici
 Name:		ispell
 Version:	3.1.20
-Release:	13
+Release:	14
 Copyright:	GPL
 Group:		Utilities/Text
 Group(pl):	Narzêdzia/Tekst
@@ -21,6 +21,7 @@ Patch5:		%{name}-gets.patch
 Patch6:		%{name}-german.patch
 Patch7:		%{name}-ncurses.patch
 Patch8:		%{name}-munchlist.patch
+Patch9:		%{name}-no-EXTRADICT.patch
 PreReq:		/sbin/install-info
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -68,6 +69,7 @@ de vardýr.
 %patch6 -p0
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
 
 echo "Getting prebuilt ispell.info file :-(."
 cp $RPM_SOURCE_DIR/ispell.info .
