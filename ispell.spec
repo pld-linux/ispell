@@ -1,25 +1,25 @@
-Summary:     GNU ispell - interactive spelling checker
-Name:        ispell
-Version:     3.1.20
-Release:     11d
-Copyright:   GPL
-Group:       Utilities/Text
-Group(pl):   U¿ytki/Tekst
-Source:      ftp://prep.ai.mit.edu/pub/gnu/%{name}-%{version}.tar.gz
-Source1:     %{name}.info
-Source2:     spell
-Patch:       %{name}-3.1.20-config.patch
-Patch1:      %{name}-3.1-info.patch
-Patch2:      %{name}-3.1.20-termio.patch
-Patch3:      %{name}-mask.patch
-Patch4:      %{name}-mask.axp.patch
-Patch5:      %{name}-gets.patch
-PreReq:      /sbin/install-info
+Summary:	GNU ispell - interactive spelling checker
+Summary(de):	GNU ispell - interaktive Rechtschreibprüfung
+Summary(fr):	ispell de GNU - vérificateur orthographique interactif
+Summary(pl):	GNU ispell -interaktywny program do sprawdzania pisowni
+Summary(tr):	Etkilmli yazým denetleyici
+Name:		ispell
+Version:	3.1.20
+Release:	12
+Copyright:	GPL
+Group:		Utilities/Text
+Group(pl):	Narzêdzia/Tekst
+Source0:	ftp://prep.ai.mit.edu/pub/gnu/%{name}-%{version}.tar.gz
+Source1:	%{name}.info
+Source2:	spell
+Patch0:		%{name}-3.1.20-config.patch
+Patch1:		%{name}-3.1-info.patch
+Patch2:		%{name}-3.1.20-termio.patch
+Patch3:		%{name}-mask.patch
+Patch4:		%{name}-mask.axp.patch
+Patch5:		%{name}-gets.patch
+PreReq:		/sbin/install-info
 BuildRoot:	/tmp/%{name}-%{version}-root
-Summary(de): GNU ispell - interaktive Rechtschreibprüfung
-Summary(fr): ispell de GNU - vérificateur orthographique interactif
-Summary(pl): GNU ispell -interaktywny program do sprawdzania pisowni
-Summary(tr): Etkilmli yazým denetleyici
 
 %description
 This is the GNU interactive spelling checker.  You can run 
@@ -30,7 +30,7 @@ suggest alternatives when it can.
 %description -l pl
 Program ten to interaktywny pakiet do sprawdzania pisowni. Mo¿na
 u¿ywaæ go do sprawdzania pisowni plików tekstowych. Dzia³a on w ten
-posób, ¿e informuje o napotkanych, nieznanych s³owach i sugeruje
+sposób, ¿e informuje o napotkanych, nieznanych s³owach i sugeruje
 ich zamienniki znajduj±ce siê w s³owniku.
 
 %description -l de
@@ -54,7 +54,7 @@ de vardýr.
 %prep
 %setup -q -n ispell-3.1
 
-%patch  -p1
+%patch0 -p1
 %patch1 -p1 
 %patch2 -p1 
 %patch3 -p1 
@@ -69,7 +69,6 @@ echo "Getting prebuilt ispell.info file :-(."
 cp $RPM_SOURCE_DIR/ispell.info .
 
 %build
-
 sed "s/CFLAGS \"-O\"/CFLAGS \"$RPM_OPT_FLAGS\"/" <local.h >local.h.tmp
 mv local.h.tmp local.h
 
@@ -85,10 +84,7 @@ PATH=.:$PATH make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-install -d $RPM_BUILD_ROOT%{_mandir}
-install -d $RPM_BUILD_ROOT%{_libdir}/emacs/site-lisp
-install -d $RPM_BUILD_ROOT%{_infodir}
+install -d $RPM_BUILD_ROOT{%{_mandir},%{_infodir},%{_libdir}/emacs/site-lisp}
 
 # Roll in the build-root'ed version (with time-stamp!)
 mv config.sh.INSTALL config.sh
@@ -99,24 +95,8 @@ gzip -9nf $RPM_BUILD_ROOT%{_infodir}/ispell.info
 
 install ${RPM_SOURCE_DIR}/spell $RPM_BUILD_ROOT%{_bindir}/
 
-bzip2 -9 $RPM_BUILD_ROOT%{_mandir}/man[14]/*
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man[14]/* README
     
-%files
-%defattr(644,root,root,755)
-%doc README
-
-%attr(755,root,root) %{_bindir}/*
-
-%{_mandir}/man1/*
-%{_mandir}/man4/*
-
-%{_libdir}/ispell
-
-%{_infodir}/ispell.info.gz
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %post
 /sbin/install-info %{_infodir}/ispell.info.gz /etc/info-dir \
 	--entry="* ispell: (ispell)		Interactive spelling checking."
@@ -127,7 +107,26 @@ if [ "$1" = 0 ]; then
     	--entry="* ispell: (ispell)           Interactive spelling checking."
 fi
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(644,root,root,755)
+%doc README.gz
+
+%attr(755,root,root) %{_bindir}/*
+%{_mandir}/man1/*
+%{_mandir}/man4/*
+%{_libdir}/ispell
+%{_infodir}/ispell.info.gz
+
 %changelog
+* Wed Jun 23 1999 Micha³ Kuratczyk <kura@pld.org.pl>
+  [3.1.20-12]
+- gzipping documentation instead bzipping
+- fixed Group(pl)
+- cosmetic changes for common l&f
+
 * Sun Dec 20 1998 Artur Frysiak <wiget@usa.net>
 - add missing -l pl to polish %%description
 - change source name to %%{name}-%%{version}.tar.gz
