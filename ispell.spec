@@ -75,7 +75,7 @@ echo "Getting prebuilt ispell.info file :-(."
 cp $RPM_SOURCE_DIR/ispell.info .
 
 %build
-sed "s/CFLAGS \"-O\"/CFLAGS \"$RPM_OPT_FLAGS\"/" <local.h >local.h.tmp
+sed "s/CFLAGS \"-O0\"/CFLAGS \"$RPM_OPT_FLAGS\"/" <local.h >local.h.tmp
 mv local.h.tmp local.h
 
 # Make config.sh first
