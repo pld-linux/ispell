@@ -106,7 +106,7 @@
 +#define MAN1DIR	"/usr/share/man/man1"
 +#define MAN4DIR	"/usr/share/man/man4"
 +
-+#define LANGUAGES "{american,MASTERDICTS=american.med+,HASHFILES=americanmed+.hash,EXTRADICT=/usr/share/dict/words}"
++#define LANGUAGES "{american,MASTERDICTS=american.med,HASHFILES=americanmed.hash,EXTRADICT=}"
 +
 +/*
 + * Place any locally-required #include statements here
