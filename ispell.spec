@@ -12,12 +12,14 @@ Group(pl):	Narzêdzia/Tekst
 Source0:	ftp://prep.ai.mit.edu/pub/gnu/%{name}-%{version}.tar.gz
 Source1:	%{name}.info
 Source2:	spell
-Patch0:		%{name}-3.1.20-config.patch
-Patch1:		%{name}-3.1-info.patch
-Patch2:		%{name}-3.1.20-termio.patch
+Patch0:		%{name}-config.patch
+Patch1:		%{name}-info.patch
+Patch2:		%{name}-termio.patch
 Patch3:		%{name}-mask.patch
 Patch4:		%{name}-mask.axp.patch
 Patch5:		%{name}-gets.patch
+Patch6:		%{name}-german.patch
+Patch7:		%{name}-ncurses.patch
 PreReq:		/sbin/install-info
 BuildRoot:	/tmp/%{name}-%{version}-root
 
@@ -61,7 +63,9 @@ de vardýr.
 %patch4 -p1 
 %endif
  
-%patch5 
+%patch5 -p0
+%patch6 -p0
+%patch7 -p1
 
 echo "Getting prebuilt ispell.info file :-(."
 cp $RPM_SOURCE_DIR/ispell.info .
@@ -78,7 +82,7 @@ cp config.sh config.sh.BUILD
 sed -e "s,/usr/,$RPM_BUILD_ROOT/usr/,g" < config.sh.BUILD > config.sh.INSTALL
 
 # and then make everything
-PATH=.:$PATH make 
+PATH=.:$PATH TERMLIB="-lncurses" make 
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -88,7 +92,7 @@ install -d $RPM_BUILD_ROOT{%{_mandir},%{_infodir},%{_libdir}/emacs/site-lisp}
 mv config.sh.INSTALL config.sh
 PATH=.:$PATH make install
 
-mv $RPM_BUILD_ROOT%{_infodir}/ispell $RPM_BUILD_ROOT/usr/info/ispell.info
+install %{SOURCE1} $RPM_BUILD_ROOT%{_infodir}/ispell.info
 gzip -9nf $RPM_BUILD_ROOT%{_infodir}/ispell.info
 
 install ${RPM_SOURCE_DIR}/spell $RPM_BUILD_ROOT%{_bindir}/
