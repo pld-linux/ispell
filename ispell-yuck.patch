@@ -1,0 +1,10 @@
+--- parse.y~	Wed Jul 25 21:51:46 2001
++++ parse.y	Tue Feb  4 19:53:56 2003
+@@ -672,7 +672,6 @@
+ 				yyerror (PARSE_Y_WRONG_NROFF);
+ 			    free ((char *) $2);
+ 			    }
+-		;
+ 		|	TEXCHARS STRING
+ 			    {
+ 			    if (strlen ((char *) $2)
