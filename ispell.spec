@@ -5,14 +5,13 @@ Summary(pl):	GNU ispell - interaktywny program do sprawdzania pisowni
 Summary(tr):	Etkilmli yazým denetleyici
 Name:		ispell
 Version:	3.1.20
-Release:	14
-Copyright:	GPL
-Group:		Utilities/Text
+Release:	15
+License:	GPL
+Group:		Applications/Text
 Group(de):	Applikationen/Text
-Group(pl):	Narzêdzia/Tekst
+Group(pl):	Aplikacje/Tekst
 Source0:	ftp://prep.ai.mit.edu/pub/gnu/%{name}-%{version}.tar.gz
-Source1:	%{name}.info
-Source2:	spell
+Source1:	spell
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-info.patch
 Patch2:		%{name}-termio.patch
@@ -23,36 +22,41 @@ Patch6:		%{name}-german.patch
 Patch7:		%{name}-ncurses.patch
 Patch8:		%{name}-munchlist.patch
 Patch9:		%{name}-no-EXTRADICT.patch
-PreReq:		/sbin/install-info
+Patch10:	%{name}-glibc.patch
+BuildRequires:	bison
+BuildRequires:	texinfo
+Prereq:		/sbin/install-info
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-This is the GNU interactive spelling checker. You can run it on text files
-and it will interactively spell check. This means it will tell you about
-words it doesn't know, and will suggest alternatives when it can.
+This is the GNU interactive spelling checker. You can run it on text
+files and it will interactively spell check. This means it will tell
+you about words it doesn't know, and will suggest alternatives when it
+can.
 
 %description -l de
-Dies ist die interaktive GNU-Rechtschreibprüfung. Sie kann auf Textdateien
-angewendet werden und prüft interaktiv auf orthographische Fehler. Das
-heißt, das Programm meldet, Möglichkeit eine Alternative vor.
+Dies ist die interaktive GNU-Rechtschreibprüfung. Sie kann auf
+Textdateien angewendet werden und prüft interaktiv auf orthographische
+Fehler. Das heißt, das Programm meldet, Möglichkeit eine Alternative
+vor.
 
 %description -l fr
-Le correcteur orthographique interactif de GNU. Vous pouvez le lancer sur
-des fichiers texte et il les vérifiera de manière interactive. Cela
-sisgnifie qu'il vous indiquera les mots qu'il ne reconnait pas et vous
-proposera des solutions de remplacement s'il le peut.
+Le correcteur orthographique interactif de GNU. Vous pouvez le lancer
+sur des fichiers texte et il les vérifiera de manière interactive.
+Cela sisgnifie qu'il vous indiquera les mots qu'il ne reconnait pas et
+vous proposera des solutions de remplacement s'il le peut.
 
 %description -l pl
-Program ten to interaktywny pakiet do sprawdzania pisowni. Mo¿na u¿ywaæ go
-do sprawdzania pisowni plików tekstowych. Dzia³a on w ten sposób, ¿e
-informuje o napotkanych, nieznanych s³owach i sugeruje ich zamienniki
-znajduj±ce siê w s³owniku.
+Program ten to interaktywny pakiet do sprawdzania pisowni. Mo¿na
+u¿ywaæ go do sprawdzania pisowni plików tekstowych. Dzia³a on w ten
+sposób, ¿e informuje o napotkanych, nieznanych s³owach i sugeruje ich
+zamienniki znajduj±ce siê w s³owniku.
 
 %description -l tr
-ispell, metin dosyalarý üzerinde sözcük yazýmý denetimleri yapan ve hatalý
-olduðunu düþündüðü sözcükleri kullanýcýya bildirerek etkileþimli olarak
-düzeltilmesine çalýþan bir yazýlýmdýr. Düzeltme önerilerinde bulunma yeteneði
-de vardýr.
+ispell, metin dosyalarý üzerinde sözcük yazýmý denetimleri yapan ve
+hatalý olduðunu düþündüðü sözcükleri kullanýcýya bildirerek
+etkileþimli olarak düzeltilmesine çalýþan bir yazýlýmdýr. Düzeltme
+önerilerinde bulunma yeteneði de vardýr.
 
 %prep
 %setup -q -n ispell-3.1
@@ -71,23 +75,21 @@ de vardýr.
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
-
-echo "Getting prebuilt ispell.info file :-(."
-cp -f $RPM_SOURCE_DIR/ispell.info .
+%patch10 -p1
 
 %build
-sed "s/CFLAGS \"-O0\"/CFLAGS \"%{rpmcflags}\"/" <local.h >local.h.tmp
+sed "s/CFLAGS \"-O\"/CFLAGS \"%{rpmcflags}\"/" <local.h >local.h.tmp
 mv -f local.h.tmp local.h
 
 # Make config.sh first
-PATH=.:$PATH make config.sh
+PATH=.:$PATH %{__make} config.sh
 
 # Now save build-rooted version (with time-stamp) for install ...
 cp -f config.sh config.sh.BUILD
 sed -e "s,/usr/,$RPM_BUILD_ROOT/usr/,g" < config.sh.BUILD > config.sh.INSTALL
 
 # and then make everything
-PATH=.:$PATH TERMLIB="-lncurses" make 
+PATH=.:$PATH TEMLIB="-lncurses" %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -95,25 +97,21 @@ install -d $RPM_BUILD_ROOT{%{_mandir},%{_infodir},%{_libdir}/emacs/site-lisp}
 
 # Roll in the build-root'ed version (with time-stamp!)
 mv -f config.sh.INSTALL config.sh
-PATH=.:$PATH make install
+PATH=.:$PATH %{__make} install
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_infodir}/ispell.info
-install %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}
+install ispell.info $RPM_BUILD_ROOT%{_infodir}/ispell.info
+install %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}
 
 gzip -9nf README
     
-%post
-/sbin/install-info %{_infodir}/ispell.info.gz /etc/info-dir \
-	--entry="* ispell: (ispell)		Interactive spelling checking."
-
-%preun
-if [ "$1" = 0 ]; then
-    /sbin/install-info --delete %{_infodir}/ispell.info.gz /etc/info-dir \
-    	--entry="* ispell: (ispell)           Interactive spelling checking."
-fi
-
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
+
+%preun
+[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
 
 %files
 %defattr(644,root,root,755)

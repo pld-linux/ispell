@@ -1,6 +1,6 @@
 --- /dev/null	Mon Dec 31 23:00:00 1979
 +++ ispell-3.1/local.h	Mon Jul 31 00:48:02 1995
-@@ -0,0 +1,103 @@
+@@ -0,0 +1,110 @@
 +/*
 + * $Id$
 + */
@@ -52,6 +52,9 @@
 +
 +/*
 + * $Log$
++ * Revision 1.2  1999/08/17 13:52:22  baggins
++ * usr/dict -> /usr/share/dict
++ *
 + * Revision 1.1  1999/07/20 10:57:19  baggins
 + * - missing patches/sources
 + *
@@ -87,6 +90,7 @@
 +
 +#define CFLAGS "-O"
 +#define LDFLAGS "-s"
++#define YACC "bison -y"
 +
 +#define MINIMENU	/* Display a mini-menu at the bottom of the screen */
 +/* #define NO8BIT	 * Remove this if you use ISO character sets */
@@ -98,7 +102,7 @@
 +#define BINDIR	"/usr/bin"
 +#define LIBDIR	"/usr/lib/ispell"
 +#define ELISPDIR "/usr/lib/emacs/site-lisp"
-+#define TEXINFODIR "/usr/info"
++#define TEXINFODIR "/usr/share/info"
 +#define MAN1DIR	"/usr/share/man/man1"
 +#define MAN4DIR	"/usr/share/man/man4"
 +
