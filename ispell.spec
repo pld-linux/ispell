@@ -8,6 +8,7 @@ Version:	3.1.20
 Release:	14
 Copyright:	GPL
 Group:		Utilities/Text
+Group(de):	Applikationen/Text
 Group(pl):	Narzêdzia/Tekst
 Source0:	ftp://prep.ai.mit.edu/pub/gnu/%{name}-%{version}.tar.gz
 Source1:	%{name}.info
@@ -72,17 +73,17 @@ de vardýr.
 %patch9 -p1
 
 echo "Getting prebuilt ispell.info file :-(."
-cp $RPM_SOURCE_DIR/ispell.info .
+cp -f $RPM_SOURCE_DIR/ispell.info .
 
 %build
-sed "s/CFLAGS \"-O0\"/CFLAGS \"$RPM_OPT_FLAGS\"/" <local.h >local.h.tmp
-mv local.h.tmp local.h
+sed "s/CFLAGS \"-O0\"/CFLAGS \"%{rpmcflags}\"/" <local.h >local.h.tmp
+mv -f local.h.tmp local.h
 
 # Make config.sh first
 PATH=.:$PATH make config.sh
 
 # Now save build-rooted version (with time-stamp) for install ...
-cp config.sh config.sh.BUILD
+cp -f config.sh config.sh.BUILD
 sed -e "s,/usr/,$RPM_BUILD_ROOT/usr/,g" < config.sh.BUILD > config.sh.INSTALL
 
 # and then make everything
@@ -93,15 +94,13 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_mandir},%{_infodir},%{_libdir}/emacs/site-lisp}
 
 # Roll in the build-root'ed version (with time-stamp!)
-mv config.sh.INSTALL config.sh
+mv -f config.sh.INSTALL config.sh
 PATH=.:$PATH make install
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_infodir}/ispell.info
-gzip -9nf $RPM_BUILD_ROOT%{_infodir}/ispell.info
+install %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}
 
-install ${RPM_SOURCE_DIR}/spell $RPM_BUILD_ROOT%{_bindir}/
-
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man[14]/* README
+gzip -9nf README
     
 %post
 /sbin/install-info %{_infodir}/ispell.info.gz /etc/info-dir \
@@ -124,4 +123,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 %{_mandir}/man4/*
 %{_libdir}/ispell
-%{_infodir}/ispell.info.gz
+%{_infodir}/ispell.info*
