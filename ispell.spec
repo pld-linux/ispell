@@ -11,6 +11,7 @@ Release:	1
 License:	BSD-like
 Group:		Applications/Text
 Source0:	http://fmg-www.cs.ucla.edu/geoff/tars/%{name}-%{version}.tar.gz
+# Source0-md5: d434e1aef1a815294d5012c60c4c414a
 Source1:	spell
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-termio.patch
