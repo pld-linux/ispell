@@ -86,20 +86,20 @@ PATH=.:$PATH make
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/usr/man
+install -d $RPM_BUILD_ROOT%{_mandir}
 install -d $RPM_BUILD_ROOT/usr/lib/emacs/site-lisp
-install -d $RPM_BUILD_ROOT/usr/info
+install -d $RPM_BUILD_ROOT%{_infodir}
 
 # Roll in the build-root'ed version (with time-stamp!)
 mv config.sh.INSTALL config.sh
 PATH=.:$PATH make install
 
-mv $RPM_BUILD_ROOT/usr/info/ispell $RPM_BUILD_ROOT/usr/info/ispell.info
-gzip -9nf $RPM_BUILD_ROOT/usr/info/ispell.info
+mv $RPM_BUILD_ROOT%{_infodir}/ispell $RPM_BUILD_ROOT/usr/info/ispell.info
+gzip -9nf $RPM_BUILD_ROOT%{_infodir}/ispell.info
 
 install ${RPM_SOURCE_DIR}/spell $RPM_BUILD_ROOT/usr/bin/
 
-bzip2 -9 $RPM_BUILD_ROOT/usr/man/man[14]/*
+bzip2 -9 $RPM_BUILD_ROOT%{_mandir}/man[14]/*
     
 %files
 %defattr(644,root,root,755)
@@ -107,23 +107,23 @@ bzip2 -9 $RPM_BUILD_ROOT/usr/man/man[14]/*
 
 %attr(755,root,root) /usr/bin/*
 
-%attr(644,root,man) /usr/man/man1/*
-%attr(644,root,man) /usr/man/man4/*
+%attr(644,root,man) %{_mandir}/man1/*
+%attr(644,root,man) %{_mandir}/man4/*
 
 /usr/lib/ispell
 
-/usr/info/ispell.info.gz
+%{_infodir}/ispell.info.gz
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/sbin/install-info /usr/info/ispell.info.gz /etc/info-dir \
+/sbin/install-info %{_infodir}/ispell.info.gz /etc/info-dir \
 	--entry="* ispell: (ispell)		Interactive spelling checking."
 
 %preun
 if [ "$1" = 0 ]; then
-    /sbin/install-info --delete /usr/info/ispell.info.gz /etc/info-dir \
+    /sbin/install-info --delete %{_infodir}/ispell.info.gz /etc/info-dir \
     	--entry="* ispell: (ispell)           Interactive spelling checking."
 fi
 
