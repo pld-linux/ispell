@@ -7,7 +7,7 @@ Summary(tr):	Etkilmli yazЩm denetleyici
 Summary(uk):	ispell - ╕нтерактивна програма перев╕рки орфограф╕╖
 Name:		ispell
 Version:	3.2.06
-Release:	2
+Release:	3
 License:	BSD-like
 Group:		Applications/Text
 Source0:	http://fmg-www.cs.ucla.edu/geoff/tars/%{name}-%{version}.tar.gz
@@ -107,7 +107,8 @@ Angielski sЁownik (lista sЁСw) dla ispella.
 
 %build
 sed "s/CFLAGS \"-O\"/CFLAGS \"%{rpmcflags}\"/" <local.h >local.h.tmp
-mv -f local.h.tmp local.h
+sed -e "s,\"/usr/lib/ispell\",\"%{_libdir}/ispell\",g" \
+	<local.h.tmp >local.h
 
 # Make config.sh first
 PATH=.:$PATH %{__make} config.sh
