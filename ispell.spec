@@ -97,7 +97,7 @@ PATH=.:$PATH make install
 mv $RPM_BUILD_ROOT%{_infodir}/ispell $RPM_BUILD_ROOT/usr/info/ispell.info
 gzip -9nf $RPM_BUILD_ROOT%{_infodir}/ispell.info
 
-install ${RPM_SOURCE_DIR}/spell $RPM_BUILD_ROOT/usr/bin/
+install ${RPM_SOURCE_DIR}/spell $RPM_BUILD_ROOT%{_bindir}/
 
 bzip2 -9 $RPM_BUILD_ROOT%{_mandir}/man[14]/*
     
@@ -105,7 +105,7 @@ bzip2 -9 $RPM_BUILD_ROOT%{_mandir}/man[14]/*
 %defattr(644,root,root,755)
 %doc README
 
-%attr(755,root,root) /usr/bin/*
+%attr(755,root,root) %{_bindir}/*
 
 %{_mandir}/man1/*
 %{_mandir}/man4/*
