@@ -21,6 +21,7 @@ Patch5:		%{name}-ncurses.patch
 Patch6:		%{name}-munchlist.patch
 Patch7:		%{name}-config2.patch
 Patch8:		%{name}-yuck.patch
+Patch9:		%{name}-pmake.patch
 URL:		http://ficus-www.cs.ucla.edu/geoff/ispell.html
 BuildRequires:	bison
 Conflicts:	vim-ispell <= 4:6.1.212-4
@@ -101,6 +102,7 @@ Angielski s³ownik (lista s³ów) dla ispella.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p0
+%patch9 -p1
 
 %build
 sed "s/CFLAGS \"-O\"/CFLAGS \"%{rpmcflags}\"/" <local.h >local.h.tmp
