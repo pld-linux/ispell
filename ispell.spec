@@ -114,7 +114,8 @@ PATH=.:$PATH %{__make} config.sh
 
 # Now save build-rooted version (with time-stamp) for install ...
 cp -f config.sh config.sh.BUILD
-sed -e "s,/usr/,$RPM_BUILD_ROOT%{_prefix}/,g" < config.sh.BUILD > config.sh.INSTALL
+sed -e "s,/usr/lib/ispell,%{_libdir}/ispell,g" < config.sh.BUILD | \
+	sed -e "s,/usr/,$RPM_BUILD_ROOT%{_prefix}/,g" > config.sh.INSTALL
 
 # and then make everything
 PATH=.:$PATH TEMLIB="-lncurses" %{__make}
