@@ -1,0 +1,31 @@
+--- ispell-3.1/config.X~	Sun Nov 25 12:38:00 2001
++++ ispell-3.1/config.X	Sun Nov 25 12:38:30 2001
+@@ -174,22 +174,22 @@
+ ** names can be constructed for the -d option without conflict.
+ */
+ #ifndef BINDIR
+-#define BINDIR	"/usr/local/bin"
++#define BINDIR	"/usr/bin"
+ #endif
+ #ifndef LIBDIR
+-#define LIBDIR	"/usr/local/lib"
++#define LIBDIR	"/usr/lib"
+ #endif
+ #ifndef ELISPDIR
+-#define ELISPDIR "/usr/local/lib/emacs/site-lisp"
++#define ELISPDIR "/usr/lib/emacs/site-lisp"
+ #endif
+ #ifndef TEXINFODIR
+-#define TEXINFODIR "/usr/local/info"
++#define TEXINFODIR "/usr/share/info"
+ #endif
+ #ifndef MAN1DIR
+-#define MAN1DIR	"/usr/local/man/man1"
++#define MAN1DIR	"/usr/share/man/man1"
+ #endif
+ #ifndef MAN4DIR
+-#define MAN4DIR	"/usr/local/man/man4"
++#define MAN4DIR	"/usr/share/man/man4"
+ #endif
+ 
+ /*

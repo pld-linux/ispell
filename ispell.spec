@@ -23,6 +23,7 @@ Patch7:		%{name}-ncurses.patch
 Patch8:		%{name}-munchlist.patch
 Patch9:		%{name}-no-EXTRADICT.patch
 Patch10:	%{name}-glibc.patch
+Patch11:	%{name}-config2.patch
 BuildRequires:	bison
 BuildRequires:	texinfo
 Prereq:		/sbin/install-info
@@ -76,6 +77,7 @@ etkileþimli olarak düzeltilmesine çalýþan bir yazýlýmdýr. Düzeltme
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
+%patch11 -p1
 
 %build
 sed "s/CFLAGS \"-O\"/CFLAGS \"%{rpmcflags}\"/" <local.h >local.h.tmp
