@@ -87,7 +87,7 @@ PATH=.:$PATH make
 rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_mandir}
-install -d $RPM_BUILD_ROOT/usr/lib/emacs/site-lisp
+install -d $RPM_BUILD_ROOT%{_libdir}/emacs/site-lisp
 install -d $RPM_BUILD_ROOT%{_infodir}
 
 # Roll in the build-root'ed version (with time-stamp!)
@@ -110,7 +110,7 @@ bzip2 -9 $RPM_BUILD_ROOT%{_mandir}/man[14]/*
 %{_mandir}/man1/*
 %{_mandir}/man4/*
 
-/usr/lib/ispell
+%{_libdir}/ispell
 
 %{_infodir}/ispell.info.gz
 
