@@ -25,6 +25,7 @@ Patch8:		%{name}-yuck.patch
 Patch9:		%{name}-pmake.patch
 URL:		http://ficus-www.cs.ucla.edu/geoff/ispell.html
 BuildRequires:	bison
+BuildRequires:	ncurses-devel
 Conflicts:	vim-ispell <= 4:6.1.212-4
 Conflicts:	ispell-pl < 20021127-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
