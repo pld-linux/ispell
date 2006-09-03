@@ -83,7 +83,7 @@ Ispell - это интерактивная программа проверки орфографии. Ispell
 Summary:	English dictionary for ispell
 Summary(pl):	Angielski sЁownik dla ispella
 Group:		Applications/Text
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description en
 English dictionary (i.e. word list) for ispell.
