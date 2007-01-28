@@ -6,23 +6,14 @@ Summary(ru):	ispell - интерактивная программа проверки орфографии
 Summary(tr):	Etkilmli yazЩm denetleyici
 Summary(uk):	ispell - ╕нтерактивна програма перев╕рки орфограф╕╖
 Name:		ispell
-Version:	3.2.06
-Release:	3
+Version:	3.3.02
+Release:	1
 License:	BSD-like
 Group:		Applications/Text
 Source0:	http://fmg-www.cs.ucla.edu/geoff/tars/%{name}-%{version}.tar.gz
-# Source0-md5:	d434e1aef1a815294d5012c60c4c414a
+# Source0-md5:	12087d7555fc2b746425cd167af480fe
 Source1:	spell
-Patch0:		%{name}-config.patch
-Patch1:		%{name}-termio.patch
-Patch2:		%{name}-mask.axp.patch
-Patch3:		%{name}-gets.patch
-Patch4:		%{name}-german.patch
-Patch5:		%{name}-ncurses.patch
-Patch6:		%{name}-munchlist.patch
-Patch7:		%{name}-config2.patch
-Patch8:		%{name}-yuck.patch
-Patch9:		%{name}-pmake.patch
+Source2:	%{name}-local.h
 URL:		http://ficus-www.cs.ucla.edu/geoff/ispell.html
 BuildRequires:	bison
 BuildRequires:	ncurses-devel
@@ -93,38 +84,32 @@ Angielski sЁownik (lista sЁСw) dla ispella.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%ifarch alpha
-%patch2 -p1
-%endif
-%patch3 -p0
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p0
-%patch9 -p1
+
+install %{SOURCE2} local.h
+sed -i -e 's#define[ \t]CC[ \t].*#define CC "%{__cc}"#g' local.h
+sed -i -e 's#define[ \t]CFLAGS[ \t].*#define CFLAGS "%{rpmcflags}"#g' local.h
+sed -i -e 's#define[ \t]LDFLAGS[ \t].*#define LDFLAGS "%{rpmldflags}"#g' local.h
+sed -i -e 's#define[ \t]BINDIR[ \t].*#define BINDIR "%{_bindir}"#g' local.h
+sed -i -e 's#define[ \t]LIBDIR[ \t].*#define LIBDIR "%{_libdir}/%{name}"#g' local.h
+sed -i -e 's#define[ \t]MAN1DIR[ \t].*#define MAN1DIR "%{_mandir}/man1"#g' local.h
+sed -i -e 's#define[ \t]MAN45DIR[ \t].*#define MAN45DIR "%{_mandir}/man5"#g' local.h
+sed -i -e 's#define[ \t]TEXINFODIR[ \t].*#define TEXINFODIR "%{_infodir}"#g' local.h
+sed -i -e 's#define[ \t]ELISPDIR[ \t].*#define ELISPDIR "%{_libdir}/emacs/site-lisp"#g' local.h
 
 %build
-sed "s/CFLAGS \"-O\"/CFLAGS \"%{rpmcflags}\"/" <local.h >local.h.tmp
-sed -e "s,\"/usr/lib/ispell\",\"%{_libdir}/ispell\",g" \
-	<local.h.tmp >local.h
-
 # Make config.sh first
 PATH=.:$PATH %{__make} config.sh
 
 # Now save build-rooted version (with time-stamp) for install ...
-cp -f config.sh config.sh.BUILD
-sed -e "s,/usr/lib/ispell,%{_libdir}/ispell,g" < config.sh.BUILD | \
-	sed -e "s,/usr/,$RPM_BUILD_ROOT%{_prefix}/,g" > config.sh.INSTALL
+sed -e "s,/usr/,$RPM_BUILD_ROOT%{_prefix}/,g"  < config.sh > config.sh.INSTALL
 
 # and then make everything
-PATH=.:$PATH TEMLIB="-lncurses" %{__make}
+PATH=.:$PATH TEMLIB="-lncurses" \
+	%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_mandir},%{_infodir},%{_libdir}/emacs/site-lisp}
+install -d $RPM_BUILD_ROOT{%{_mandir},%{_infodir},%{_libdir}/{%{name},emacs/site-lisp}}
 
 # Roll in the build-root'ed version (with time-stamp!)
 mv -f config.sh.INSTALL config.sh
@@ -146,7 +131,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc README
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
-%{_mandir}/man4/*
+%{_mandir}/man5/*
 %dir %{_libdir}/ispell
 
 %files en
