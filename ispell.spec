@@ -1,10 +1,10 @@
 Summary:	ispell - interactive spelling checker
-Summary(de):	ispell - interaktive RechtschreibprЭfung
-Summary(fr):	ispell - vИrificateur orthographique interactif
-Summary(pl):	ispell - interaktywny program do sprawdzania pisowni
-Summary(ru):	ispell - интерактивная программа проверки орфографии
-Summary(tr):	Etkilmli yazЩm denetleyici
-Summary(uk):	ispell - ╕нтерактивна програма перев╕рки орфограф╕╖
+Summary(de.UTF-8):   ispell - interaktive Rechtschreibprц╪fung
+Summary(fr.UTF-8):   ispell - vц╘rificateur orthographique interactif
+Summary(pl.UTF-8):   ispell - interaktywny program do sprawdzania pisowni
+Summary(ru.UTF-8):   ispell - п╦п╫я┌п╣я─п╟п╨я┌п╦п╡п╫п╟я▐ п©я─п╬пЁя─п╟п╪п╪п╟ п©я─п╬п╡п╣я─п╨п╦ п╬я─я└п╬пЁя─п╟я└п╦п╦
+Summary(tr.UTF-8):   Etkilmli yazд╠m denetleyici
+Summary(uk.UTF-8):   ispell - я√п╫я┌п╣я─п╟п╨я┌п╦п╡п╫п╟ п©я─п╬пЁя─п╟п╪п╟ п©п╣я─п╣п╡я√я─п╨п╦ п╬я─я└п╬пЁя─п╟я└я√я≈
 Name:		ispell
 Version:	3.3.02
 Release:	1
@@ -27,60 +27,60 @@ and it will interactively spell check. This means it will tell you
 about words it doesn't know, and will suggest alternatives when it
 can.
 
-%description -l de
-Dies ist die interaktive RechtschreibprЭfung. Sie kann auf Textdateien
-angewendet werden und prЭft interaktiv auf orthographische Fehler. Das
-heiъt, das Programm meldet, MЖglichkeit eine Alternative vor.
+%description -l de.UTF-8
+Dies ist die interaktive Rechtschreibprц╪fung. Sie kann auf Textdateien
+angewendet werden und prц╪ft interaktiv auf orthographische Fehler. Das
+heiц÷t, das Programm meldet, Mц╤glichkeit eine Alternative vor.
 
-%description -l fr
+%description -l fr.UTF-8
 Le correcteur orthographique interactif. Vous pouvez le lancer sur des
-fichiers texte et il les vИrifiera de maniХre interactive. Cela
+fichiers texte et il les vц╘rifiera de maniц╗re interactive. Cela
 sisgnifie qu'il vous indiquera les mots qu'il ne reconnait pas et vous
 proposera des solutions de remplacement s'il le peut.
 
-%description -l pl
-Program ten to interaktywny pakiet do sprawdzania pisowni. Mo©na
-u©ywaФ go do sprawdzania pisowni plikСw tekstowych. DziaЁa on w ten
-sposСb, ©e informuje o napotkanych, nieznanych sЁowach i sugeruje ich
-zamienniki znajduj╠ce siЙ w sЁowniku.
+%description -l pl.UTF-8
+Program ten to interaktywny pakiet do sprawdzania pisowni. Moе╪na
+uе╪ywaд┤ go do sprawdzania pisowni plikцЁw tekstowych. Dziaе┌a on w ten
+sposцЁb, е╪e informuje o napotkanych, nieznanych sе┌owach i sugeruje ich
+zamienniki znajdujд┘ce siд≥ w sе┌owniku.
 
-%description -l uk
-Ispell - це ╕нтерактивна програма перев╕рки орфограф╕╖. Ispell
-перев╕ря╓ текстовий файл в пошуку орфограф╕чних помилок. Коли вона
-знаходить слово, якого нема╓ в словнику, вона пропону╓ близьк╕ до
-нього коректн╕ слова для зам╕ни.
+%description -l uk.UTF-8
+Ispell - я├п╣ я√п╫я┌п╣я─п╟п╨я┌п╦п╡п╫п╟ п©я─п╬пЁя─п╟п╪п╟ п©п╣я─п╣п╡я√я─п╨п╦ п╬я─я└п╬пЁя─п╟я└я√я≈. Ispell
+п©п╣я─п╣п╡я√я─я▐я■ я┌п╣п╨я│я┌п╬п╡п╦п╧ я└п╟п╧п╩ п╡ п©п╬я┬я┐п╨я┐ п╬я─я└п╬пЁя─п╟я└я√я┤п╫п╦я┘ п©п╬п╪п╦п╩п╬п╨. п п╬п╩п╦ п╡п╬п╫п╟
+п╥п╫п╟я┘п╬п╢п╦я┌я▄ я│п╩п╬п╡п╬, я▐п╨п╬пЁп╬ п╫п╣п╪п╟я■ п╡ я│п╩п╬п╡п╫п╦п╨я┐, п╡п╬п╫п╟ п©я─п╬п©п╬п╫я┐я■ п╠п╩п╦п╥я▄п╨я√ п╢п╬
+п╫я▄п╬пЁп╬ п╨п╬я─п╣п╨я┌п╫я√ я│п╩п╬п╡п╟ п╢п╩я▐ п╥п╟п╪я√п╫п╦.
 
-Зверн╕ть увагу, що цей пакет м╕стить лише програму перев╕рки. Вам буде
-потр╕бно встановити ще пакети з файлами словник╕в для тих мов,
-правильн╕сть текст╕в на яких ви хочете перев╕ряти.
+п≈п╡п╣я─п╫я√я┌я▄ я┐п╡п╟пЁя┐, я┴п╬ я├п╣п╧ п©п╟п╨п╣я┌ п╪я√я│я┌п╦я┌я▄ п╩п╦я┬п╣ п©я─п╬пЁя─п╟п╪я┐ п©п╣я─п╣п╡я√я─п╨п╦. п▓п╟п╪ п╠я┐п╢п╣
+п©п╬я┌я─я√п╠п╫п╬ п╡я│я┌п╟п╫п╬п╡п╦я┌п╦ я┴п╣ п©п╟п╨п╣я┌п╦ п╥ я└п╟п╧п╩п╟п╪п╦ я│п╩п╬п╡п╫п╦п╨я√п╡ п╢п╩я▐ я┌п╦я┘ п╪п╬п╡,
+п©я─п╟п╡п╦п╩я▄п╫я√я│я┌я▄ я┌п╣п╨я│я┌я√п╡ п╫п╟ я▐п╨п╦я┘ п╡п╦ я┘п╬я┤п╣я┌п╣ п©п╣я─п╣п╡я√я─я▐я┌п╦.
 
-%description -l tr
-ispell, metin dosyalarЩ Эzerinde sЖzcЭk yazЩmЩ denetimleri yapan ve
-hatalЩ olduПunu dЭЧЭndЭПЭ sЖzcЭkleri kullanЩcЩya bildirerek
-etkileЧimli olarak dЭzeltilmesine ГalЩЧan bir yazЩlЩmdЩr. DЭzeltme
-Жnerilerinde bulunma yeteneПi de vardЩr.
+%description -l tr.UTF-8
+ispell, metin dosyalarд╠ ц╪zerinde sц╤zcц╪k yazд╠mд╠ denetimleri yapan ve
+hatalд╠ olduд÷unu dц╪е÷ц╪ndц╪д÷ц╪ sц╤zcц╪kleri kullanд╠cд╠ya bildirerek
+etkileе÷imli olarak dц╪zeltilmesine ц╖alд╠е÷an bir yazд╠lд╠mdд╠r. Dц╪zeltme
+ц╤nerilerinde bulunma yeteneд÷i de vardд╠r.
 
-%description -l ru
-Ispell - это интерактивная программа проверки орфографии. Ispell
-проверяет текстовый файл в поиске орфографических ошибок и опечаток.
-Когда она находит слово, которого нет в словаре, она предлагает
-близкие к нему корректные слова для замены.
+%description -l ru.UTF-8
+Ispell - я█я┌п╬ п╦п╫я┌п╣я─п╟п╨я┌п╦п╡п╫п╟я▐ п©я─п╬пЁя─п╟п╪п╪п╟ п©я─п╬п╡п╣я─п╨п╦ п╬я─я└п╬пЁя─п╟я└п╦п╦. Ispell
+п©я─п╬п╡п╣я─я▐п╣я┌ я┌п╣п╨я│я┌п╬п╡я▀п╧ я└п╟п╧п╩ п╡ п©п╬п╦я│п╨п╣ п╬я─я└п╬пЁя─п╟я└п╦я┤п╣я│п╨п╦я┘ п╬я┬п╦п╠п╬п╨ п╦ п╬п©п╣я┤п╟я┌п╬п╨.
+п п╬пЁп╢п╟ п╬п╫п╟ п╫п╟я┘п╬п╢п╦я┌ я│п╩п╬п╡п╬, п╨п╬я┌п╬я─п╬пЁп╬ п╫п╣я┌ п╡ я│п╩п╬п╡п╟я─п╣, п╬п╫п╟ п©я─п╣п╢п╩п╟пЁп╟п╣я┌
+п╠п╩п╦п╥п╨п╦п╣ п╨ п╫п╣п╪я┐ п╨п╬я─я─п╣п╨я┌п╫я▀п╣ я│п╩п╬п╡п╟ п╢п╩я▐ п╥п╟п╪п╣п╫я▀.
 
-Обратите внимание, что этот пакет содержит только программу проверки,
-к ней необходимо установить пакеты с файлами словарей для тех языков,
-правильность текстов на которых вы хотите проверять.
+п·п╠я─п╟я┌п╦я┌п╣ п╡п╫п╦п╪п╟п╫п╦п╣, я┤я┌п╬ я█я┌п╬я┌ п©п╟п╨п╣я┌ я│п╬п╢п╣я─п╤п╦я┌ я┌п╬п╩я▄п╨п╬ п©я─п╬пЁя─п╟п╪п╪я┐ п©я─п╬п╡п╣я─п╨п╦,
+п╨ п╫п╣п╧ п╫п╣п╬п╠я┘п╬п╢п╦п╪п╬ я┐я│я┌п╟п╫п╬п╡п╦я┌я▄ п©п╟п╨п╣я┌я▀ я│ я└п╟п╧п╩п╟п╪п╦ я│п╩п╬п╡п╟я─п╣п╧ п╢п╩я▐ я┌п╣я┘ я▐п╥я▀п╨п╬п╡,
+п©я─п╟п╡п╦п╩я▄п╫п╬я│я┌я▄ я┌п╣п╨я│я┌п╬п╡ п╫п╟ п╨п╬я┌п╬я─я▀я┘ п╡я▀ я┘п╬я┌п╦я┌п╣ п©я─п╬п╡п╣я─я▐я┌я▄.
 
 %package en
 Summary:	English dictionary for ispell
-Summary(pl):	Angielski sЁownik dla ispella
+Summary(pl.UTF-8):   Angielski sе┌ownik dla ispella
 Group:		Applications/Text
 Requires:	%{name} = %{version}-%{release}
 
 %description en
 English dictionary (i.e. word list) for ispell.
 
-%description en -l pl
-Angielski sЁownik (lista sЁСw) dla ispella.
+%description en -l pl.UTF-8
+Angielski sе┌ownik (lista sе┌цЁw) dla ispella.
 
 %prep
 %setup -q
