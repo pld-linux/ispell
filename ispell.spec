@@ -1,10 +1,10 @@
 Summary:	ispell - interactive spelling checker
-Summary(de.UTF-8):   ispell - interaktive Rechtschreibprüfung
-Summary(fr.UTF-8):   ispell - vérificateur orthographique interactif
-Summary(pl.UTF-8):   ispell - interaktywny program do sprawdzania pisowni
-Summary(ru.UTF-8):   ispell - интерактивная программа проверки орфографии
-Summary(tr.UTF-8):   Etkilmli yazım denetleyici
-Summary(uk.UTF-8):   ispell - інтерактивна програма перевірки орфографії
+Summary(de.UTF-8):	ispell - interaktive Rechtschreibprüfung
+Summary(fr.UTF-8):	ispell - vérificateur orthographique interactif
+Summary(pl.UTF-8):	ispell - interaktywny program do sprawdzania pisowni
+Summary(ru.UTF-8):	ispell - интерактивная программа проверки орфографии
+Summary(tr.UTF-8):	Etkilmli yazım denetleyici
+Summary(uk.UTF-8):	ispell - інтерактивна програма перевірки орфографії
 Name:		ispell
 Version:	3.3.02
 Release:	1
@@ -72,7 +72,7 @@ Ispell - это интерактивная программа проверки �
 
 %package en
 Summary:	English dictionary for ispell
-Summary(pl.UTF-8):   Angielski słownik dla ispella
+Summary(pl.UTF-8):	Angielski słownik dla ispella
 Group:		Applications/Text
 Requires:	%{name} = %{version}-%{release}
 
