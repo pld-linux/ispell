@@ -7,7 +7,7 @@ Summary(tr.UTF-8):	Etkilmli yazım denetleyici
 Summary(uk.UTF-8):	ispell - інтерактивна програма перевірки орфографії
 Name:		ispell
 Version:	3.3.02
-Release:	3
+Release:	4
 License:	BSD-like
 Group:		Applications/Text
 Source0:	http://fmg-www.cs.ucla.edu/geoff/tars/%{name}-%{version}.tar.gz
@@ -100,14 +100,14 @@ sed -i -e 's#define[ \t]ELISPDIR[ \t].*#define ELISPDIR "%{_libdir}/emacs/site-l
 
 %build
 # Make config.sh first
-PATH=.:$PATH %{__make} config.sh
+PATH=.:$PATH %{__make} -j1 config.sh
 
 # Now save build-rooted version (with time-stamp) for install ...
 sed -e "s,/usr/,$RPM_BUILD_ROOT%{_prefix}/,g"  < config.sh > config.sh.INSTALL
 
 # and then make everything
 PATH=.:$PATH TEMLIB="-lncurses" \
-	%{__make}
+	%{__make} -j1
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -115,7 +115,7 @@ install -d $RPM_BUILD_ROOT{%{_mandir},%{_infodir},%{_libdir}/{%{name},emacs/site
 
 # Roll in the build-root'ed version (with time-stamp!)
 mv -f config.sh.INSTALL config.sh
-PATH=.:$PATH %{__make} install
+PATH=.:$PATH %{__make} -j1 install
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}
 
