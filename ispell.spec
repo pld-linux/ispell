@@ -7,13 +7,14 @@ Summary(tr.UTF-8):	Etkilmli yazım denetleyici
 Summary(uk.UTF-8):	ispell - інтерактивна програма перевірки орфографії
 Name:		ispell
 Version:	3.3.02
-Release:	2
+Release:	3
 License:	BSD-like
 Group:		Applications/Text
 Source0:	http://fmg-www.cs.ucla.edu/geoff/tars/%{name}-%{version}.tar.gz
 # Source0-md5:	12087d7555fc2b746425cd167af480fe
 Source1:	spell
 Source2:	%{name}-local.h
+Patch0:		ispell-3.3.02-glibc-2.10.patch
 URL:		http://ficus-www.cs.ucla.edu/geoff/ispell.html
 BuildRequires:	bison
 BuildRequires:	ncurses-devel
@@ -84,6 +85,7 @@ Angielski słownik (lista słów) dla ispella.
 
 %prep
 %setup -q
+%patch0 -p1
 
 install %{SOURCE2} local.h
 sed -i -e 's#define[ \t]CC[ \t].*#define CC "%{__cc}"#g' local.h
