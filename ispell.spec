@@ -7,7 +7,7 @@ Summary(tr.UTF-8):	Etkilmli yazım denetleyici
 Summary(uk.UTF-8):	ispell - інтерактивна програма перевірки орфографії
 Name:		ispell
 Version:	3.3.02
-Release:	5
+Release:	6
 License:	BSD-like
 Group:		Applications/Text
 Source0:	http://fmg-www.cs.ucla.edu/geoff/tars/%{name}-%{version}.tar.gz
