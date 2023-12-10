@@ -22,6 +22,8 @@ Conflicts:	vim-ispell <= 4:6.1.212-4
 Conflicts:	ispell-pl < 20021127-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		_debugsource_packages	0
+
 %description
 This is the interactive spelling checker. You can run it on text files
 and it will interactively spell check. This means it will tell you
