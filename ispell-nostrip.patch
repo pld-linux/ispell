@@ -1,17 +1,17 @@
---- ispell-3.3.02/Makefile.orig	2005-05-25 15:57:02.000000000 +0200
-+++ ispell-3.3.02/Makefile	2023-12-16 21:06:36.230691971 +0100
-@@ -307,7 +307,6 @@ install-basic:
+--- ispell-3.4.06/Makefile.orig	2023-12-16 21:20:58.833790969 +0100
++++ ispell-3.4.06/Makefile	2023-12-16 21:21:27.686967991 +0100
+@@ -336,7 +336,6 @@ install-basic:
  	@. ./config.sh; \
  	  set -x; \
- 	  cd $$BINDIR; \
+ 	  cd $(DESTDIR)$$BINDIR; \
 -	  strip ispell$$EXEEXT; \
  	  chmod 755 ispell$$EXEEXT
  	@. ./config.sh; \
  	  set -x; \
-@@ -362,7 +361,6 @@ install-dictbuild:
+@@ -392,7 +391,6 @@ install-dictbuild:
  	@. ./config.sh; \
  	  set -x; \
- 	  cd $$BINDIR; \
+ 	  cd $(DESTDIR)$$BINDIR; \
 -	  strip buildhash$$EXEEXT icombine$$EXEEXT ijoin$$EXEEXT; \
  	  chmod 755 buildhash$$EXEEXT icombine$$EXEEXT ijoin$$EXEEXT \
  	    munchlist findaffix tryaffix

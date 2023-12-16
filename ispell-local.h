@@ -41,9 +41,6 @@
 #define	MAN45SECT "5"
 #define	MAN45EXT ".5"
 
-#define ELISPDIR "/usr/lib/emacs/site-lisp"
-#define TEXINFODIR "/usr/share/info"
-
 
 /*
  * Place any locally-required #include statements here

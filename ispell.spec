@@ -6,17 +6,17 @@ Summary(ru.UTF-8):	ispell - интерактивная программа про
 Summary(tr.UTF-8):	Etkilmli yazım denetleyici
 Summary(uk.UTF-8):	ispell - інтерактивна програма перевірки орфографії
 Name:		ispell
-Version:	3.3.02
-Release:	6
+Version:	3.4.06
+Release:	1
 License:	BSD-like
 Group:		Applications/Text
-Source0:	http://fmg-www.cs.ucla.edu/geoff/tars/%{name}-%{version}.tar.gz
-# Source0-md5:	12087d7555fc2b746425cd167af480fe
+#Source0Download: https://www.cs.hmc.edu/~geoff/ispell.html
+Source0:	https://www.cs.hmc.edu/~geoff/tars/%{name}-%{version}.tar.gz
+# Source0-md5:	efd9ede43be1b8eb2a2e02023e373ecc
 Source1:	spell
 Source2:	%{name}-local.h
-Patch0:		%{name}-3.3.02-glibc-2.10.patch
-Patch1:		%{name}-nostrip.patch
-URL:		http://ficus-www.cs.ucla.edu/geoff/ispell.html
+Patch0:		%{name}-nostrip.patch
+URL:		https://www.cs.hmc.edu/~geoff/ispell.html
 BuildRequires:	bison
 BuildRequires:	ncurses-devel
 Conflicts:	vim-ispell <= 4:6.1.212-4
@@ -87,9 +87,8 @@ Angielski słownik (lista słów) dla ispella.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
-install %{SOURCE2} local.h
+cp -f %{SOURCE2} local.h
 sed -i -e 's#define[ \t]CC[ \t].*#define CC "%{__cc}"#g' local.h
 sed -i -e 's#define[ \t]CFLAGS[ \t].*#define CFLAGS "%{rpmcflags}"#g' local.h
 sed -i -e 's#define[ \t]LDFLAGS[ \t].*#define LDFLAGS "%{rpmldflags}"#g' local.h
@@ -97,47 +96,56 @@ sed -i -e 's#define[ \t]BINDIR[ \t].*#define BINDIR "%{_bindir}"#g' local.h
 sed -i -e 's#define[ \t]LIBDIR[ \t].*#define LIBDIR "%{_libdir}/%{name}"#g' local.h
 sed -i -e 's#define[ \t]MAN1DIR[ \t].*#define MAN1DIR "%{_mandir}/man1"#g' local.h
 sed -i -e 's#define[ \t]MAN45DIR[ \t].*#define MAN45DIR "%{_mandir}/man5"#g' local.h
-sed -i -e 's#define[ \t]TEXINFODIR[ \t].*#define TEXINFODIR "%{_infodir}"#g' local.h
-sed -i -e 's#define[ \t]ELISPDIR[ \t].*#define ELISPDIR "%{_libdir}/emacs/site-lisp"#g' local.h
 
 %build
 # Make config.sh first
-PATH=.:$PATH %{__make} -j1 config.sh
-
-# Now save build-rooted version (with time-stamp) for install ...
-sed -e "s,/usr/,$RPM_BUILD_ROOT%{_prefix}/,g"  < config.sh > config.sh.INSTALL
+PATH=.:$PATH \
+%{__make} -j1 config.sh
 
 # and then make everything
-PATH=.:$PATH TEMLIB="-lncurses" \
+PATH=.:$PATH \
 	%{__make} -j1
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_mandir},%{_infodir},%{_libdir}/{%{name},emacs/site-lisp}}
+install -d $RPM_BUILD_ROOT{%{_mandir},%{_libdir}/%{name}}
 
-# Roll in the build-root'ed version (with time-stamp!)
-%{__mv} config.sh.INSTALL config.sh
-PATH=.:$PATH %{__make} -j1 install
+PATH=.:$PATH \
+%{__make} -j1 install \
+	DESTDIR=$RPM_BUILD_ROOT
+
+# binaries not installed, sq conflicts with squirrel
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/man1/{sq,unsq}.1
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/postshell
--/usr/sbin/fix-info-dir -c %{_infodir}
-
-%postun	-p /sbin/postshell
--/usr/sbin/fix-info-dir -c %{_infodir}
-
 %files
 %defattr(644,root,root,755)
-%doc README
-%attr(755,root,root) %{_bindir}/*
-%{_mandir}/man1/*
-%{_mandir}/man5/*
+%doc CHANGES README WISHES
+%attr(755,root,root) %{_bindir}/buildhash
+%attr(755,root,root) %{_bindir}/defmt-c
+%attr(755,root,root) %{_bindir}/defmt-sh
+%attr(755,root,root) %{_bindir}/findaffix
+%attr(755,root,root) %{_bindir}/icombine
+%attr(755,root,root) %{_bindir}/ijoin
+%attr(755,root,root) %{_bindir}/ispell
+%attr(755,root,root) %{_bindir}/munchlist
+%attr(755,root,root) %{_bindir}/spell
+%attr(755,root,root) %{_bindir}/tryaffix
+%{_mandir}/man1/buildhash.1*
+%{_mandir}/man1/findaffix.1*
+%{_mandir}/man1/ispell.1*
+%{_mandir}/man1/munchlist.1*
+%{_mandir}/man1/tryaffix.1*
+%{_mandir}/man5/ispell.5*
 %dir %{_libdir}/ispell
 
 %files en
 %defattr(644,root,root,755)
-%{_libdir}/ispell/*
+%{_libdir}/ispell/american.hash
+%{_libdir}/ispell/americanmed.hash
+%{_libdir}/ispell/english.aff
+%{_libdir}/ispell/english.hash
