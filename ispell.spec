@@ -14,15 +14,14 @@ Source0:	http://fmg-www.cs.ucla.edu/geoff/tars/%{name}-%{version}.tar.gz
 # Source0-md5:	12087d7555fc2b746425cd167af480fe
 Source1:	spell
 Source2:	%{name}-local.h
-Patch0:		ispell-3.3.02-glibc-2.10.patch
+Patch0:		%{name}-3.3.02-glibc-2.10.patch
+Patch1:		%{name}-nostrip.patch
 URL:		http://ficus-www.cs.ucla.edu/geoff/ispell.html
 BuildRequires:	bison
 BuildRequires:	ncurses-devel
 Conflicts:	vim-ispell <= 4:6.1.212-4
 Conflicts:	ispell-pl < 20021127-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_debugsource_packages	0
 
 %description
 This is the interactive spelling checker. You can run it on text files
@@ -88,6 +87,7 @@ Angielski słownik (lista słów) dla ispella.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 install %{SOURCE2} local.h
 sed -i -e 's#define[ \t]CC[ \t].*#define CC "%{__cc}"#g' local.h
@@ -116,7 +116,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_mandir},%{_infodir},%{_libdir}/{%{name},emacs/site-lisp}}
 
 # Roll in the build-root'ed version (with time-stamp!)
-mv -f config.sh.INSTALL config.sh
+%{__mv} config.sh.INSTALL config.sh
 PATH=.:$PATH %{__make} -j1 install
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}
@@ -124,10 +124,10 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p	/sbin/postshell
+%post	-p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
-%postun	-p	/sbin/postshell
+%postun	-p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
 %files
